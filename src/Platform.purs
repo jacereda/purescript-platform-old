@@ -1,7 +1,15 @@
-module Data.Platform where
+-- | Platform detection functionality.
+module Data.Platform( Platform(..)
+                    , OS(..)
+                    , platform
+                    , parse
+                    ) where
+
 
 import Data.Maybe
 
+
+-- | Guessed platform properties.
 type Platform = { description :: String
                 , layout :: Maybe String
                 , manufacturer :: Maybe String
@@ -13,6 +21,7 @@ type Platform = { description :: String
                 , os :: OS
                 }
 
+-- | Guessed operating system properties.
 type OS = { description :: String
           , architecture :: Maybe Number
           , family :: Maybe String
@@ -53,6 +62,7 @@ foreign import platformImpl
 var platformImpl = require('platform');
 """ :: NPlatform
 
+-- | Guessed `Platform` corresponding to the underlying VM.
 platform :: Platform
 platform = wrapPlatform platformImpl
 
@@ -63,5 +73,7 @@ function parseImpl(ua) {
 }
 """ :: String -> NPlatform
 
+
+-- | Guessed `Platform` corresponding to a User Agent string.
 parse :: String -> Platform
 parse = wrapPlatform <<< parseImpl
