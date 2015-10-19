@@ -1,18 +1,19 @@
 module Test.Main where
 
-import Debug.Trace
-import Data.Platform
+import System.Platform
 import Data.Maybe
 import Data.Array
 import Control.Monad.Eff
+import Control.Monad.Eff.Console
+import Prelude
 
 
 main = do
   let p = platform
       p' = parse $ fromMaybe "" platform.ua
       ps = [p, p']
-      dump :: forall a. (Show a) => String -> (Platform -> a) -> Eff (trace :: Trace) Unit
-      dump s f = trace $ s ++ ": " ++ show (f <$> ps)
+      dump :: forall a. (Show a) => String -> (Platform -> a) -> Eff (console :: CONSOLE) Unit
+      dump s f = log $ s ++ ": " ++ show (f <$> ps)
   dump "description" _.description
   dump "layout" _.layout
   dump "manufacturer" _.manufacturer

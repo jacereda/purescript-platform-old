@@ -1,41 +1,15 @@
-# Module Documentation
+# purescript-platform
 
-## Module Data.Platform
+Platform-detection functionality.
 
+## Installation
 
-Platform detection functionality.
-
-#### `Platform`
-
-``` purescript
-type Platform = { os :: OS, version :: Maybe String, ua :: Maybe String, product :: Maybe String, prerelease :: Maybe String, name :: Maybe String, manufacturer :: Maybe String, layout :: Maybe String, description :: String }
+```
+bower install purescript-console
 ```
 
-Guessed platform properties.
+This library requires PureScript 0.7 or later.
 
-#### `OS`
+## Module documentation
 
-``` purescript
-type OS = { version :: Maybe String, family :: Maybe String, architecture :: Maybe Number, description :: String }
-```
-
-Guessed operating system properties.
-
-#### `platform`
-
-``` purescript
-platform :: Platform
-```
-
-Guessed `Platform` corresponding to the underlying VM.
-
-#### `parse`
-
-``` purescript
-parse :: String -> Platform
-```
-
-Guessed `Platform` corresponding to a User Agent string.
-
-
-
+- [System.Platform](docs/System/Platform.md)
